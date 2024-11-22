@@ -1,9 +1,10 @@
 ## CMD相關指令
 
-**啟動伺服器**：python manage.py runserver (用瀏覽器訪問 http://127.0.0.1:8000)
+**啟動伺服器**：python app.py runserver (用瀏覽器訪問 http://127.0.0.1:8000)
 
 ## 請確保環境的需求
-**前端** ：**html** **css**
+**前端** ：**HTML** **CSS**  
+**後端** ：**Python**/**Flask**  
 **資料庫** ：**DBeaver**/**MySQL**
 
 
