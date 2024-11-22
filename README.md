@@ -3,7 +3,7 @@
 **啟動伺服器**：python manage.py runserver (用瀏覽器訪問 http://127.0.0.1:8000)
 
 **請確保環境的需求**
-**前端 'html' 'css'**
+**前端** **html** **css**
 
 
 ## 參考資料
