@@ -27,7 +27,7 @@ def customer_list():
     cursor = connection.cursor() 
     
     #執行SQL    
-    cursor.execute('SELECT cusno, cusname, address, tel FROM customer order by cusno;')
+    cursor.execute('SELECT cusno, cusname, address, contactor FROM customer order by cusno;')
     
     #取回SQL執行後的所有資料
     data = cursor.fetchall()
@@ -35,7 +35,7 @@ def customer_list():
     #設定參數, 準備傳給網頁
     if data:
         #如果有資料
-        params = [{'cusno': d[0], 'cusname': d[1], 'address': d[2], 'tel': d[3]} for d in data]
+        params = [{'cusno': d[0], 'cusname': d[1], 'address': d[2], 'contactor': d[3]} for d in data]
     else:
         #如果無資料
         params = None
