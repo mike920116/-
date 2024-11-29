@@ -108,7 +108,7 @@ def customer_read():
     data = cursor.fetchone()
 
     if data:
-        params = {'cusno':data[0], 'cusname':data[1], 'address':data[4], 'tel':data[8]}
+        params = {'cusno':data[0], 'cusname':data[1], 'address':data[4], 'tel':data[8], 'photo':data[10]}
     else:
         params = None
         
