@@ -25,31 +25,30 @@
         
         <!--~~~~~~~~~~~~~~~~~--> 
         <div class="content">
-            <h2>客戶查詢</h2>
+            <h2>產品清單</h2>
 
             <p>
                 {% if data %}
-                    <table class="single">
-                        <tr>
-                            <td>客戶編號</td>
-                            <td>{{data.cusno}}</td>
-                        </tr>
-                        <tr>
-                            <td>客戶名稱</td>
-                            <td>{{data.cusname}}</td>
-                        </tr>
-                        <tr>
-                            <td>地址</td>
-                            <td>{{data.address}}</td>
-                        </tr>
-                        <tr>
-                            <td>電話</td>
-                            <td>{{data.tel}}</td>
-                        </tr> 
-                        <tr>
-                            <td>圖片</td>
-                            <td><img src='/static/css/1.jpg'></td>
-                        </tr> 
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>產品#</th>
+                                <th>產品名稱</th>
+                                <th>單價</th>
+                                <th>庫存量</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for d in data %}
+                                <tr>
+                                    <td>{{d.prono}}</td>
+                                    <td>{{d.proname}}</td>
+                                    <td>{{d.price}}</td>
+                                    <td>{{d.stockAmt}}</td>
+                                </tr>
+                            {% endfor %} 
+                        </tbody>                    
                     </table>
                 {% else %}
                     <p> 查無資料 </p>

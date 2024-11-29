@@ -118,6 +118,38 @@ def customer_read():
     #回傳網頁
     return render_template('/customer/read.html', data=params)
 
+#產品查詢表單
+@app.route('/product/read/form')
+def product_read_form():
+    return render_template('product/read_form.html') 
+
+#產品查詢
+@app.route('/product/read', methods=['GET'])
+def product_read():    
+    #取得資料庫連線    
+    connection = db.get_connection()  
+    
+    #取得執行sql命令的cursor
+    cursor = connection.cursor()   
+    
+    #取得傳入參數
+    prono = request.values.get('prono').strip()
+    
+    #執行sql命令並取回資料    
+    cursor.execute('SELECT * FROM product WHERE prono=%s', (prono,))
+    data = cursor.fetchone()
+
+    if data:
+        params = {'prono':data[0], 'proname':data[1], 'price':data[4]}
+    else:
+        params = None
+        
+    #關閉連線   
+    connection.close()  
+        
+    #回傳網頁
+    return render_template('/product/read.html', data=params)
+
 #-----------------------
 # 啟動Flask網站
 #-----------------------
