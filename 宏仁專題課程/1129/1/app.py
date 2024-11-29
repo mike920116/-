@@ -86,6 +86,38 @@ def product_list():
     # 將參數送給網頁，並傳遞分頁資訊
     return render_template('/product/list.html', data=params, page=page, total_pages=total_pages)
 
+#客戶查詢表單
+@app.route('/customer/read/form')
+def customer_read_form():
+    return render_template('customer/read_form.html') 
+
+#客戶查詢
+@app.route('/customer/read', methods=['GET'])
+def customer_read():    
+    #取得資料庫連線    
+    connection = db.get_connection()  
+    
+    #取得執行sql命令的cursor
+    cursor = connection.cursor()   
+    
+    #取得傳入參數
+    cusno = request.values.get('cusno').strip()
+    
+    #執行sql命令並取回資料    
+    cursor.execute('SELECT * FROM customer WHERE cusno=%s', (cusno,))
+    data = cursor.fetchone()
+
+    if data:
+        params = {'cusno':data[0], 'cusname':data[1], 'address':data[4], 'tel':data[8]}
+    else:
+        params = None
+        
+    #關閉連線   
+    connection.close()  
+        
+    #回傳網頁
+    return render_template('/customer/read.html', data=params)
+
 #-----------------------
 # 啟動Flask網站
 #-----------------------
