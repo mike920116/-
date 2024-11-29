@@ -5,7 +5,7 @@ DB_HOST = "localhost"
 DB_PORT = 3306  # MySQL 預設埠號
 DB_NAME = "north"
 DB_USER = "root"
-DB_PASSWORD = "0000" #預設密碼11056$$$
+DB_PASSWORD = "11056$$$" #預設密碼11056$$$
 
 # 建立資料庫連線
 def get_connection():
