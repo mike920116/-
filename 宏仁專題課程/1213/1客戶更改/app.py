@@ -16,8 +16,7 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     return render_template('index.html')
-
-#客戶清單
+#客戶清單--------------------------------------------------------------------------------------------
 @app.route('/customer/list')
 def customer_list(): 
     #取得資料庫連線 
@@ -46,12 +45,12 @@ def customer_list():
     #將參數送給網頁, 讓資料嵌入網頁中  
     return render_template('/customer/list.html', data=params) 
 
-#客戶新增表單
+#客戶新增表單--------------------------------------------------------------------------------------------
 @app.route('/customer/create/form')
 def customer_create_form():
     return render_template('customer/create_form.html') 
 
-#客戶新增
+#客戶新增--------------------------------------------------------------------------------------------
 @app.route('/customer/create', methods=['POST'])
 def customer_create():
     try:
@@ -77,12 +76,12 @@ def customer_create():
         return render_template('customer/create.html', success=False)
 
 
-#客戶取出表單
+#客戶取出表單--------------------------------------------------------------------------------------------
 @app.route('/customer/update/fetch')
 def customer_update_fetch():    
     return render_template('customer/update_fetch.html') 
 
-#客戶更改表單
+#客戶更改表單--------------------------------------------------------------------------------------------
 @app.route('/customer/update/form', methods=['GET'])
 def customer_update_form(): 
     #取得資料庫連線    
@@ -109,7 +108,7 @@ def customer_update_form():
     #回傳網頁
     return render_template('/customer/update_form.html', data=params) 
 
-#客戶更改
+#客戶更改--------------------------------------------------------------------------------------------
 @app.route('/customer/update', methods=['POST'])
 def customer_update():
     try:
@@ -117,13 +116,14 @@ def customer_update():
         cusno = request.form.get('cusno').strip()
         cusname = request.form.get('cusname').strip()
         address = request.form.get('address').strip()
+        tel = request.form.get('tel').strip()
 
         #取得資料庫連線
         conn = db.get_connection()
 
         #將資料寫入客戶資料表
         cursor = conn.cursor()
-        cursor.execute("UPDATE customer SET cusname=%s, address=%s WHERE cusno=%s", (cusname, address, cusno))
+        cursor.execute("UPDATE customer SET cusname=%s, address=%s, tel=%s WHERE cusno=%s", (cusname, address, tel, cusno))
         
         conn.commit()
         conn.close()
@@ -133,7 +133,8 @@ def customer_update():
     except:
         #回傳失敗畫面
         return render_template('customer/update.html', success=False)
-                
+#產品--------------------------------------------------------------------------------------------
+
 #-----------------------
 # 啟動Flask網站
 #-----------------------
