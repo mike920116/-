@@ -29,9 +29,19 @@ def customer_list():
     #執行SQL
 
     sql = '''
-          select a.prono , a.proname , a.supno , b.supname
-          from product a , supplier b
-          where a.supno = b.supno
+        SELECT 
+            p.prono, 
+            p.proname, 
+            p.supno, 
+            s.supname,
+            p.typno, 
+            t.typname
+        FROM 
+            product p
+        JOIN 
+            supplier s ON p.supno = s.supno
+        JOIN 
+            protype t ON p.typno = t.typno;
           '''   
      
     cursor.execute(sql)
