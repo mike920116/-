@@ -84,6 +84,28 @@
                 </ul>
             </li>        
         </ul>
+        <form class="d-flex" method="GET" action="{{ url_for('index') }}">
+            <input class="form-control me-2"
+                   type="search"
+                   placeholder="Search"
+                   aria-label="Search"
+                   name="Search_query"
+                   value="{{ request.args.get('Search_query') }}">
+            <!-- <select class="form-select me-2" name="difficulty">
+                <option value="" {% if not selected_difficulty %}selected{% endif %}>-- 所有難度(預設) --</option>
+                {% for difficulty, label in difficulties %}
+                    <option value="{{ difficulty }}" {% if difficulty == selected_difficulty %}selected{% endif %}>{{ label }}</option>
+                {% endfor %}
+            </select>
+            <select class="form-select me-2" name="tag_id">
+                <option value="all" {% if not selected_tag %}selected{% endif %}>-- 所有標籤(預設) --</option>
+                {% for tag in all_tags %}
+                    <option value="{{ tag.id }}" {% if selected_tag and selected_tag.id == tag.id %}selected{% endif %}>{{ tag.name }}</option>
+                {% endfor %}
+            </select> -->
+        
+            <button class="btn btn-outline-success" type="submit">search</button>
+        </form>
         
         <!--~~~~~~~~~~~~~~~~~--> 
         <div class="content">
