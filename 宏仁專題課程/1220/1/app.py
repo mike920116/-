@@ -423,6 +423,8 @@ def product_read():
         
     #回傳網頁
     return render_template('/product/read.html', data=params) 
+
+
 #-----------------------
 # 啟動Flask網站
 #-----------------------
