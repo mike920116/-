@@ -9,6 +9,13 @@
 <link href="/static/css/menu.css" rel="stylesheet"/>  
 <link href="/static/css/main.css" rel="stylesheet"/>      
 <!------------------------->
+
+<style>
+    .product-entry {
+        margin-bottom: 10px;
+    }
+</style>
+
 </head>
    
 <body>
@@ -27,7 +34,7 @@
         <div class="content">
             <h2>進貨</h2>
 
-            <form action="/transaction/buy" method="post">
+            <form id="buyForm" action="/transaction/buy" method="post">
                 <div class="form">
                     <span class="name">訂單編號</span>
                     <span class="value">
@@ -59,28 +66,22 @@
                     </span>
                     <br/>                      
 
-                    <span class="name">產品編號</span>
-                    <span class="value">
-                        <input type="text" maxlength="4" name="prono1" required>
-                    </span>
-                    <br/>   
-
-                    <span class="name">數量</span>
-                    <span class="value">
-                        <input type="number" name="amt1" required>
-                    </span>
-                    <br/>                      
-
-                    <span class="name">產品編號</span>
-                    <span class="value">
-                        <input type="text" maxlength="4" name="prono2">
-                    </span>
-                    <br/>   
-
-                    <span class="name">數量</span>
-                    <span class="value">
-                        <input type="number" name="amt2">
-                    </span>
+                    <!-- 動態新增產品編號與數量 -->
+                    <div id="productContainer">
+                        <div class="product-entry">
+                            <span class="name">產品編號</span>
+                            <span class="value">
+                                <input type="text" maxlength="4" name="prono[]" required>
+                            </span>
+                            <span class="name">數量</span>
+                            <span class="value">
+                                <input type="number" name="amt[]" required>
+                            </span>
+                            <button type="button" onclick="removeProduct(this)">刪除</button>
+                        </div>
+                    </div>
+                    <br/>
+                    <button type="button" id="addProductButton" style="margin-top: 10px;" onclick="addProduct()">新增產品</button>
                     <br/>
 
                     <span class="name"></span>
@@ -89,12 +90,38 @@
             </form>
                
         </div>       
-        
         <!--~~~~~~~~~~~~~~~~~--> 
         <div class="footer">
             NTUB imd, 2024.
         </div>  
     </div>
+
+    <!-- JavaScript -->
+    <script>
+        // 動態新增產品編號與數量欄位
+        function addProduct() {
+            const container = document.getElementById("productContainer");
+            const newEntry = document.createElement("div");
+            newEntry.className = "product-entry";
+            newEntry.innerHTML = `
+                <span class="name">產品編號</span>
+                <span class="value">
+                    <input type="text" maxlength="4" name="prono[]" required>
+                </span>
+                <span class="name">數量</span>
+                <span class="value">
+                    <input type="number" name="amt[]" required>
+                </span>
+                <button type="button" onclick="removeProduct(this)">刪除</button>
+            `;
+            container.appendChild(newEntry);
+        }
+
+        // 刪除某一組產品編號與數量欄位
+        function removeProduct(button) {
+            const entry = button.parentElement;
+            entry.remove();
+        }
+    </script>
 </body>
-   
 </html>
