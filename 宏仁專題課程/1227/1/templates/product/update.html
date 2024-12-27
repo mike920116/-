@@ -2,12 +2,12 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>測試樣板</title>
+<title>北風公司管理系統</title>
 <!-- 連結思源中文及css -->
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC" rel="stylesheet">
-<link href="imgs/icon.jpg" rel="shortcut icon">
-<link href="css/menu.css" rel="stylesheet"/>  
-<link href="css/main.css" rel="stylesheet"/>      
+<link href="/static/imgs/icon.jpg" rel="shortcut icon">
+<link href="/static/css/menu.css" rel="stylesheet"/>  
+<link href="/static/css/main.css" rel="stylesheet"/>      
 <!------------------------->
 </head>
    
@@ -25,27 +25,15 @@
         
         <!--~~~~~~~~~~~~~~~~~--> 
         <div class="content">
-            <h2>單一資料樣板畫面</h2>
+            <h2>產品更改</h2>
 
             <p>
-                <table class="single">
-                    <tr>
-                        <td>名稱1</td>
-                        <td>值1</td>
-                    </tr>
-                    <tr>
-                        <td>名稱1</td>
-                        <td>值1</td>
-                    </tr>
-                    <tr>
-                        <td>名稱1</td>
-                        <td>值1</td>
-                    </tr>
-                    <tr>
-                        <td>名稱1</td>
-                        <td>值1</td>
-                    </tr> 
-                </table>
+                <!-- 12/13用來測試產品更改是否成功 -->
+                {% if success %}
+                    <p> 更改成功 </p>
+                {% else %}
+                    <p> 更改失敗 </p>
+                {% endif %}
             </p>       
                
         </div>       
