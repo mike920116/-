@@ -53,7 +53,7 @@
             <div class="pagination">
                 <!-- 上一頁 -->
                 {% if page > 1 %}
-                    <a href="{{ url_for('product_list', page=page-1) }}">上一頁</a>
+                    <a href="{{ url_for('product_bp.product_list', page=page-1) }}">上一頁</a>
                 {% else %}
                     <span>上一頁</span>
                 {% endif %}
@@ -63,17 +63,18 @@
                     {% if p == page %}
                         <span>{{ p }}</span>
                     {% else %}
-                        <a href="{{ url_for('product_list', page=p) }}">{{ p }}</a>
+                        <a href="{{ url_for('product_bp.product_list', page=p) }}">{{ p }}</a>
                     {% endif %}
                 {% endfor %}
 
                 <!-- 下一頁 -->
                 {% if page < total_pages %}
-                    <a href="{{ url_for('product_list', page=page+1) }}">下一頁</a>
+                    <a href="{{ url_for('product_bp.product_list', page=page+1) }}">下一頁</a>
                 {% else %}
                     <span>下一頁</span>
                 {% endif %}
             </div>
+
 
         </div>      
         
